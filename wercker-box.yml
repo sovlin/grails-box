@@ -1,5 +1,5 @@
 name: java
-version: 0.0.2
+version: 0.0.3
 inherits: wercker/ubuntu12.04-webessentials@0.0.5
 type: main
 platform: ubuntu@12.04
@@ -16,16 +16,17 @@ script: |-
   # Add webupd8 team repository that contains the 3 major oracle-java versions
   sudo add-apt-repository ppa:webupd8team/java -y
   sudo apt-get update
-  # Install oracle-java7
-  sudo apt-get install oracle-java8-installer -y -qq
-  # Version 
-  java -version
-  javac -version
 
   # Accept the oracle license
   # echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
   # echo debconf shared/accepted-oracle-license-v1-1 seen true |  sudo debconf-set-selections
   echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
+
+  # Install oracle-java8
+  sudo apt-get install oracle-java8-installer -y -qq
+  # Version 
+  java -version
+  javac -version
 
   # Default environement variables
   sudo apt-get install oracle-java8-set-default
