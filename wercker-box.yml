@@ -5,7 +5,7 @@ type: main
 platform: ubuntu@12.04
 description: Wercker box for Java development
 packages:
-  - oracle-java7
+  - oracle-java8
 script: |-
   # Remove java from base box
   sudo apt-get purge openjdk-\* icedtea-\* icedtea6-\*
@@ -14,18 +14,22 @@ script: |-
   ! type java || { echo "I expected java to be not available. Java version is: $(java -version). Aborting."; exit 1; }
 
   # Add webupd8 team repository that contains the 3 major oracle-java versions
-  sudo add-apt-repository ppa:webupd8team/java -y
+  sudo add-apt-repository ppa:webupd8team/java
   sudo apt-get update
+  sudo apt-get install oracle-java8-installer
 
+  #  Version
+  java -version
+  javac -version
+  
   # Accept the oracle license
-  echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
-  echo debconf shared/accepted-oracle-license-v1-1 seen true |  sudo debconf-set-selections
-  
-  # Install oracle-java7
-  sudo apt-get install oracle-java7-installer -y -qq
-  
+  echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
+
+  # Default Variable environment
+  sudo apt-get install oracle-java8-set-default
+
   # We should have java again
-  type java || { echo "I expected java to be available after oracle-java7-installer installation. Aborting."; exit 1; }
+  type java || { echo "I expected java to be available after oracle-java8-installer installation. Aborting."; exit 1; }
 
   # Install ant
   sudo apt-get install ant ant-contrib ivy ivy-doc -y -qq
@@ -37,3 +41,5 @@ script: |-
   sudo apt-get install maven -y -qq
   
   type mvn || { echo "I expected maven to be available. Aborting."; exit 1; }
+  
+  
