@@ -50,4 +50,7 @@ script: |-
   pwd
   cd ./grails-2.4.4
   pwd
+  GRAILS_HOME = "/pipeline/build/grails-2.4.4"
+  export GRAILS_HOME
+  grails --version
   
