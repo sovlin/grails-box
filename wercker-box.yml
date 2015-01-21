@@ -1,4 +1,4 @@
-name: Grails-Last-Test
+name: grails-last-test
 version: 0.0.3
 inherits: wercker/ubuntu12.04-webessentials@0.0.5
 type: main
