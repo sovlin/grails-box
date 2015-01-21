@@ -49,7 +49,7 @@ script: |-
   type mvn || { echo "I expected maven to be available. Aborting."; exit 1; }
   
   sudo wget "http://dist.springframework.org.s3.amazonaws.com/release/GRAILS/grails-2.4.4.zip"
-  unzip -d grails-2.4.4.zip
+  unzip -qq grails-2.4.4.zip
   echo "PWD="$(pwd)
   echo "WERCKER_ROOT="$WERCKER_ROOT
   cd ./grails-2.4.4
@@ -60,4 +60,8 @@ script: |-
   export GRAILS_HOME=$(pwd)
   export PATH="$PATH:$GRAILS_HOME/bin"
   grails --version
+  cd ../../
+  ls -al
+  cd ../
+  ls -al
   
