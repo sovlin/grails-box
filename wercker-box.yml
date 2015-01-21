@@ -4,6 +4,9 @@ inherits: wercker/ubuntu12.04-webessentials@0.0.5
 type: main
 platform: ubuntu@12.04
 description: Wercker box for Grails 2.4.4 development - java 8
+keywords:
+  - Grails 2.4.4
+  - java 8
 packages:
   - oracle-java8
 script: |-
@@ -51,8 +54,8 @@ script: |-
   cd ./grails-2.4.4
   pwd
   # Update path
-  export JAVA_HOME=$(which java)
-  export PATH="$PATH:$JAVA_HOME/bin"
+  export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+  export PATH="$PATH:$JAVA_HOME/bin" 
   export GRAILS_HOME=$(pwd)
   export PATH="$PATH:$GRAILS_HOME/bin"
   grails --version
