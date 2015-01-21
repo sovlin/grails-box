@@ -54,6 +54,7 @@ script: |-
   echo "PWD="$(pwd)
   echo "WERCKER_ROOT="$WERCKER_ROOT
   cd $GRAILS_HOME
+  mv grails-2.4.4/* .
   pwd
   ls -al
   # Update path
