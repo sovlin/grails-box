@@ -50,14 +50,14 @@ script: |-
   
   sudo wget "http://dist.springframework.org.s3.amazonaws.com/release/GRAILS/grails-2.4.4.zip"
   GRAILS_HOME=/lib/grails
-  unzip -qq grails-2.4.4.zip -d $GRAILS_HOME
+  sudo unzip -qq grails-2.4.4.zip -d $GRAILS_HOME
   echo "PWD="$(pwd)
   echo "WERCKER_ROOT="$WERCKER_ROOT
-  cd GRAILS_HOME
-  pwd
-  ls -al
+  sudo cd GRAILS_HOME
+  sudo pwd
+  sudo ls -al
   # Update path
-  export JAVA_HOME=/usr/lib/jvm/java-8-oracle
-  export PATH="$PATH:$JAVA_HOME/bin" 
-  export PATH="$PATH:$GRAILS_HOME/bin"
-  grails --version
+  sudo export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+  sudo export PATH="$PATH:$JAVA_HOME/bin" 
+  sudo export PATH="$PATH:$GRAILS_HOME/bin"
+  sudo grails --version
