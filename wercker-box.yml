@@ -50,8 +50,9 @@ script: |-
   pwd
   cd ./grails-2.4.4
   pwd
-  which java
   # Update path
+  export JAVA_HOME=$(which java)
+  export PATH="$PATH:$JAVA_HOME/bin"
   export GRAILS_HOME=$(pwd)
   export PATH="$PATH:$GRAILS_HOME/bin"
   grails --version
