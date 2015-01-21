@@ -1,5 +1,5 @@
 name: Grails-Last-Test
-version: 0.0.2
+version: 0.0.1
 inherits: wercker/ubuntu12.04-webessentials@0.0.5
 type: main
 platform: ubuntu@12.04
@@ -50,7 +50,6 @@ script: |-
   pwd
   cd ./grails-2.4.4
   pwd
-  GRAILS_HOME = "/pipeline/build/grails-2.4.4"
-  export $GRAILS_HOME
+  export GRAILS_HOME=/pipeline/build/grails-2.4.4
   grails --version
   
