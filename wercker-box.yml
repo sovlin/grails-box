@@ -64,16 +64,17 @@ script: |-
   grails --version
   
   #Clone Grails snapshot
-  GRAILS_HOME_SNAPSHOT=/lib/grails-snapshot
-  sudo mkdir $GRAILS_HOME_SNAPSHOT
-  cd $GRAILS_HOME_SNAPSHOT
+  GRAILS_HOME=/lib/grails-snapshot
+  sudo mkdir $GRAILS_HOME
+  cd $GRAILS_HOME
   sudo git clone https://github.com/grails/grails-core.git
-  cd grails-core
+  GRAILS_HOME=/lib/grails-snapshot/grails-core
+  cd $GRAILS_HOME
   sudo ./gradlew install
   # Update path
   export JAVA_HOME=/usr/lib/jvm/java-8-oracle
   export PATH="$PATH:$JAVA_HOME/bin" 
-  export PATH="$PATH:$GRAILS_HOME_SNAPSHOT/grails-core/bin"
+  export PATH="$PATH:$GRAILS_HOME/bin"
   ls -al
   grails --version
   
