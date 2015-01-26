@@ -65,6 +65,7 @@ script: |-
   
   #Clone Grails snapshot
   GRAILS_HOME_SNAPSHOT=/lib/grails-snapshot
+  sudo mkdir $GRAILS_HOME_SNAPSHOT
   cd $GRAILS_HOME_SNAPSHOT
   git clone https://github.com/grails/grails-core.git
   cd grails-core
