@@ -62,3 +62,17 @@ script: |-
   export PATH="$PATH:$JAVA_HOME/bin" 
   export PATH="$PATH:$GRAILS_HOME/bin"
   grails --version
+  
+  #Clone Grails snapshot
+  GRAILS_HOME_SNAPSHOT=/lib/grails-snapshot
+  cd $GRAILS_HOME_SNAPSHOT
+  git clone https://github.com/grails/grails-core.git
+  cd grails-core
+  ./gradlew install
+  # Update path
+  export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+  export PATH="$PATH:$JAVA_HOME/bin" 
+  export PATH="$PATH:$GRAILS_HOME_SNAPSHOT/bin"
+  ls -al
+  grails --version
+  
