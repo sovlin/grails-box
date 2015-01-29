@@ -74,7 +74,7 @@ script: |-
   echo "WERCKER_ROOT="$WERCKER_ROOT
   cd $GRAILS_HOME
   sudo mv grails-3.0.0.M1/* .
-  sudo rm -r $GRAILS_HOME/grails-3.0.0.M1/*
+  sudo rm -r $GRAILS_HOME/grails-3.0.0.M1/
   pwd
   ls -al
   # Update path
