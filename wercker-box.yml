@@ -1,11 +1,13 @@
 name: Grails-Last-Test
-version: 0.0.6
+version: 0.0.7
 inherits: wercker/ubuntu12.04-webessentials@1.0.4
 type: main
 platform: ubuntu@12.04
 description: Wercker box for Grails 2.4.4 development - java 8
 keywords:
   - Grails 2.4.4
+  - Grails 3.0.0.M1
+  - Ubuntu 12.04
   - java 8
 packages:
   - oracle-java8
@@ -47,9 +49,10 @@ script: |-
   sudo apt-get install maven -y -qq
   
   type mvn || { echo "I expected maven to be available. Aborting."; exit 1; }
-  
+
+  # Grails 2.4.4
   sudo wget "http://dist.springframework.org.s3.amazonaws.com/release/GRAILS/grails-2.4.4.zip"
-  GRAILS_HOME=/lib/grails
+  GRAILS_HOME=/lib/grails-2.4.4
   sudo unzip -qq grails-2.4.4.zip -d $GRAILS_HOME
   echo "PWD="$(pwd)
   echo "WERCKER_ROOT="$WERCKER_ROOT
@@ -63,18 +66,19 @@ script: |-
   export PATH="$PATH:$GRAILS_HOME/bin"
   grails --version
   
-  #Clone Grails snapshot
-  GRAILS_HOME=/lib/grails-snapshot
-  sudo mkdir $GRAILS_HOME
+  # Grails 3.0.0 M1
+  sudo wget "https://github.com/grails/grails-core/releases/download/v3.0.0.M1/grails-3.0.0.M1.zip"
+  GRAILS_HOME=/lib/grails-3.0.0.M1
+  sudo unzip -qq grails-3.0.0.M1.zip -d $GRAILS_HOME
+  echo "PWD="$(pwd)
+  echo "WERCKER_ROOT="$WERCKER_ROOT
   cd $GRAILS_HOME
-  sudo git clone https://github.com/grails/grails-core.git
-  GRAILS_HOME=/lib/grails-snapshot/grails-core
-  cd $GRAILS_HOME
-  sudo ./gradlew install
+  sudo mv grails-3.0.0.M1/* .
+  pwd
+  ls -al
   # Update path
   export JAVA_HOME=/usr/lib/jvm/java-8-oracle
-  export PATH="$PATH:$JAVA_HOME/bin" 
+  export PATH="$PATH:$JAVA_HOME/bin"
   export PATH="$PATH:$GRAILS_HOME/bin"
-  ls -al
   grails --version
   
