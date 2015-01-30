@@ -50,6 +50,9 @@ script: |-
   
   type mvn || { echo "I expected maven to be available. Aborting."; exit 1; }
 
+  # cache path
+  PATH_CACHE=$(echo $PATH)
+
   # Grails 2.4.4
   sudo wget "http://dist.springframework.org.s3.amazonaws.com/release/GRAILS/grails-2.4.4.zip"
   GRAILS_HOME=/lib/grails-2.4.4
@@ -79,8 +82,9 @@ script: |-
   ls -al
   # Update path
   echo $PATH
+  export PATH="$PATH_CACHE"
+  echo $PATH
   export JAVA_HOME=/usr/lib/jvm/java-8-oracle
   export PATH="$PATH:$JAVA_HOME/bin"
   export PATH="$PATH:$GRAILS_HOME/bin"
   grails --version
-  
